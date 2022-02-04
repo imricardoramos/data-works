@@ -9,7 +9,7 @@ defmodule DataWorks.Application do
   def start(_type, _args) do
     children = [
       # Start the Ecto repository
-      DataWorks.Repo,
+      # DataWorks.Repo,
       # Start the Telemetry supervisor
       DataWorksWeb.Telemetry,
       # Start the PubSub system

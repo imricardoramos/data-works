@@ -18,6 +18,7 @@ defmodule DataWorksWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/data/carto/:document_name", PageController, :carto
   end
 
   # Other scopes may use custom stacks.

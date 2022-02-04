@@ -43,3 +43,6 @@ import "phoenix_html"
 // >> liveSocket.disableLatencySim()
 // window.liveSocket = liveSocket
 
+import Map from './map'
+Map.init()
+

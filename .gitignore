@@ -35,4 +35,4 @@ npm-debug.log
 /data/sources/*
 !data/sources/download
 
-/priv/static/data/carto/
+/priv/static/data/
