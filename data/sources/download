@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# This folder is for storing raw data coming from third parties
+# Some of these datasets are very heavyweight so we 
+# gitignore this folder and keep a download script instead
+
+# wget -nc "https://www.ine.cl/docs/default-source/censo-de-poblacion-y-vivienda/bbdd/censo-2017/csv/csv-personas-censo-2017.rar"
+# rar x -o- "csv-personas-censo-2017.rar"
+# rar x -o- "microdato_censo2017-personas.rar"
+
+# wget -nc "https://www.ine.cl/docs/default-source/censo-de-poblacion-y-vivienda/bbdd/censo-2017/csv/csv-identificaci%C3%B3n-geogr%C3%A1fica-censo-2017.rar"
+# rar x -o- "csv-identificación-geográfica-censo-2017.rar"
+
+wget -nc -O "xn--Censo_2017_Distrito_censal_Poblacin,_viviendas_por_rea_y_densidad-gmf02j.geojson" "https://opendata.arcgis.com/api/v3/datasets/c6e62e8bd9f04a6a9df46fbeaf1f22fd_0/downloads/data?format=geojson&spatialRefId=4326"
