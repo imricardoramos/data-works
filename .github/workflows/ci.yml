@@ -86,8 +86,8 @@ jobs:
             mkdir -p data_works/releases/${{ github.sha }}
             tar -xzf /tmp/_build/prod/data_works-${{ github.sha }}.tar.gz --directory ~/data_works/releases/${{ github.sha}}/
             cd data_works/
-            eval "$(direnv export bash)"
+            echo ${{ secrets.SERVICE_TOKEN }} | doppler configure set token --silent --scope ./
             ./data_works stop
             ln -sfT ~/data_works/releases/${{ github.sha }}/bin/data_works ~/data_works/data_works
             ./data_works version
-            ./data_works daemon
+            doppler run -- ./data_works daemon

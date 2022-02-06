@@ -19,6 +19,7 @@ defmodule DataWorksWeb.Router do
 
     get "/", PageController, :index
     get "/data/carto/:document_name", PageController, :carto
+    get "/data/outputs/:series_name", PageController, :outputs
   end
 
   # Other scopes may use custom stacks.

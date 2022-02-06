@@ -10,6 +10,7 @@ import Config
 # which you should run after static files are built and
 # before starting your production server.
 config :data_works, DataWorksWeb.Endpoint, cache_static_manifest: "priv/static/cache_manifest.json"
+config :data_works, storage_module: DataWorks.Storage.S3BucketStorage
 
 # Do not print debug messages in production
 config :logger, level: :info

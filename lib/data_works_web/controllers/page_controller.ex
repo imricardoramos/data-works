@@ -1,13 +1,15 @@
 defmodule DataWorksWeb.PageController do
   use DataWorksWeb, :controller
+  alias DataWorks.Storage
 
   def index(conn, _params) do
     render(conn, "index.html")
   end
 
-  def data(conn, %{"series_name" => series_name}) do
-    filename = "ratio-hombres-mujeres-santiago_dc"
-    Path.join(["data", "outputs", "carto", filename])
+  def outputs(conn, %{"series_name" => series_name}) do
+    path = Path.join(["data", "outputs", series_name])
+    contents = Storage.read!(path)
+    text(conn, contents)
   end
 
   def carto(conn, %{"document_name" => "santiago-dc"}) do
@@ -17,7 +19,7 @@ defmodule DataWorksWeb.PageController do
   def santiago_dc do
     filename = "xn--Censo_2017_Distrito_censal_Poblacin,_viviendas_por_rea_y_densidad-gmf02j.geojson"
     Path.join(["data", "sources", "carto", filename])
-    |> File.read!()
+    |> Storage.read!()
     |> Jason.decode!()
     |> Map.update!("features", fn features ->
       features

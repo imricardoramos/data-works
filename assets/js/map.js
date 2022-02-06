@@ -1,7 +1,6 @@
 import L from 'leaflet'
 import Papa from 'papaparse'
 import 'leaflet-providers'
-const BACKEND_DOMAIN = "http://localhost:4000"
 
 export default Map = {
   async init(){
@@ -43,13 +42,13 @@ export default Map = {
 }
 
 async function getSantiagoDistricts(){
-  const request = await fetch(`${BACKEND_DOMAIN}/data/carto/santiago-dc`);
+  const request = await fetch(`/data/carto/santiago-dc`);
   const data = await request.json();
   return data
 }
 
 async function getData(){
-  const request = await fetch(`${BACKEND_DOMAIN}/data/ratio-hombres-mujeres-santiago.csv`);
+  const request = await fetch(`/data/outputs/ratio-hombres-mujeres-santiago.csv`);
   const data = await request.text();
   const parsed = Papa.parse(data, {header: true, dynamicTyping: true})
   return parsed.data
