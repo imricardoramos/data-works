@@ -43,6 +43,7 @@ import "phoenix_html"
 // >> liveSocket.disableLatencySim()
 // window.liveSocket = liveSocket
 
-import Map from './map'
-Map.init()
-
+import SantiagoSexRatioPage from './santiago_sex_ratio'
+if(window.location.pathname == "/santiago-sex-ratio-map/"){
+   SantiagoSexRatioPage.init()
+}

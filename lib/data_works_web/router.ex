@@ -18,6 +18,7 @@ defmodule DataWorksWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/santiago-sex-ratio-map", PageController, :santiago_sex_ratio_map
     get "/data/carto/:document_name", PageController, :carto
     get "/data/outputs/:series_name", PageController, :outputs
   end

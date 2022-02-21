@@ -3,23 +3,35 @@ defmodule DataWorksWeb.PageController do
   alias DataWorks.Storage
 
   def index(conn, _params) do
-    render(conn, "index.html")
+    text(conn, "")
+  end
+
+  def santiago_sex_ratio_map(conn, _params) do
+    render(conn, "santiago_sex_ratio_map.html")
+  end
+
+  def outputs(conn, %{"series_name" => series_name, "external" => "true"}) do
+    path = Path.join(["data", "outputs", series_name])
+    contents = Storage.get_url!(path)
+    text(conn, contents)
   end
 
   def outputs(conn, %{"series_name" => series_name}) do
     path = Path.join(["data", "outputs", series_name])
-    contents = Storage.read!(path)
+    contents = Storage.get!(path)
     text(conn, contents)
   end
 
   def carto(conn, %{"document_name" => "santiago-dc"}) do
-    json(conn, santiago_dc())
+    conn
+    |> put_resp_header("cache-control", "max-age=86400, private")
+    |> json(santiago_dc())
   end
 
   def santiago_dc do
     filename = "xn--Censo_2017_Distrito_censal_Poblacin,_viviendas_por_rea_y_densidad-gmf02j.geojson"
     Path.join(["data", "sources", "carto", filename])
-    |> Storage.read!()
+    |> Storage.get!()
     |> Jason.decode!()
     |> Map.update!("features", fn features ->
       features
